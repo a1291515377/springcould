@@ -1,0 +1,25 @@
+server:
+  port: 8764
+
+spring:
+  application:
+    name: could-ribben
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    statusPageUrl: http://${eureka.instance.hostname}:${server.port}/
+    healthCheckUrl: http://${eureka.instance.hostname}:${server.port}/health
+    homePageUrl: http://${eureka.instance.hostname}:${server.port}/
+    prefer-ip-address: true
+
+
+
+#HostName:与此实例相关联的主机名，是其他实例可以用来进行请求的准确名称
+#StatusPageUrl: 获取此实例绝对状态页的URL路径，为其他服务提供信息时来找到这个实例的状态的路径，默认为null
+#health-check-url:获取此实例的相对健康检查URL路径，默认为/health
+#home-page-url:获取此实例的绝对主页URL路径，为其他服务提供信息时使用的路径,默认为null
+#prefer-ip-address:可以将IP注册到Eureka Server上，而如果不配置就是机器的主机名。
