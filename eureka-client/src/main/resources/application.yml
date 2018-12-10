@@ -1,0 +1,24 @@
+#端口
+server:
+  port: 8763
+
+#需要指明spring.application.name,这个很重要，这在以后的服务与服务之间相互调用一般都是根据这个name
+spring:
+  application:
+    name: eureka-client
+
+#实例微服务段配置
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    status-page-url: http://${eureka.instance.hostname}:${server.port}/
+    health-check-url: http://${eureka.instance.hostname}:${server.port}/health
+    home-page-url: http://${eureka.instance.hostname}:${server.port}/
+
+#HostName:与此实例相关联的主机名，是其他实例可以用来进行请求的准确名称
+#StatusPageUrl: 获取此实例绝对状态页的URL路径，为其他服务提供信息时来找到这个实例的状态的路径，默认为null
+#health-check-url:获取此实例的相对健康检查URL路径，默认为/health
+#home-page-url:获取此实例的绝对主页URL路径，为其他服务提供信息时使用的路径,默认为null
